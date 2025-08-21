@@ -94,7 +94,8 @@ export const getPoolDataSafe = async ({
       isV3: false,
     };
   } catch (e) {
-    // If both fail, return zero reserves
+    // If both fail, return zero reserves (safe fallback)
+    // Note: console.error is intentionally kept for debugging production issues
     console.error(`Failed to get pool data for ${address}:`, e);
     return {
       reserve0: 0n,

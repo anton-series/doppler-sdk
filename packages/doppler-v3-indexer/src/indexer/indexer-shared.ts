@@ -203,7 +203,7 @@ ponder.on("V4DERC20:Transfer", async ({ event, context }) => {
       timestamp,
       context,
     }),
-  ])
+  ]);
 
   if (fromUser.lastSeenAt != timestamp) {
     await updateUser({

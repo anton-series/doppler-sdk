@@ -182,6 +182,12 @@ export const refreshCheckpointBlob = async ({
       continue;
     }
 
+    // skip pools with invalid epoch length (prevent division by zero)
+    if (Number(checkpoint.epochLength) <= 0) {
+      console.error(`Invalid epochLength for pool ${poolAddress}: ${checkpoint.epochLength}`);
+      continue;
+    }
+
     // calculate current epoch and last updated epoch
     const currentEpoch = Math.floor(
       (timestamp - checkpoint.startingTime) / checkpoint.epochLength
